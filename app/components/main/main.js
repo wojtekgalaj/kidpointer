@@ -1,5 +1,10 @@
 import React from 'react-native';
 
+import ListKids from '../list-kids/list-kids'
+import NewKid from '../new-kid/new-kid'
+
+import commonStyles from '../../styles/main'
+
 var {
   Component,
   View,
@@ -8,12 +13,6 @@ var {
 } = React
 
 var styles = StyleSheet.create({
-  container:{
-    flex: 1,
-    backgroundColor: '#bada55',
-    flexDirection: 'column',
-    justifyContent: 'center'
-  },
   title: {
     marginBottom: 20,
     fontSize: 25,
@@ -23,10 +22,20 @@ var styles = StyleSheet.create({
 });
 
 class Main extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      kids: [],
+      newKid: {
+        name: ''
+      }
+    }
+  }
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.title}>Hello world</Text>
+      <View style={commonStyles.container}>
+        {this.state.kids.length ? <ListKids kids={this.state.kids}/> : <NewKid/>}
       </View>
     )
   }
